@@ -1,23 +1,25 @@
-"use strict";
-
-import pluginService from "../services/PluginService";
+const PluginService = require('../services/PluginService');
 
 class PluginController {
-    constructor() {
-        pluginService.loadPlugins();
-    }
+  constructor() {
+    PluginService.loadPlugins();
+  }
 
-    getAllPluginsRequests(req, res) {
-        res.end(JSON.stringify(pluginService.getPluginsRequests()));
-    }
+  getAllPluginsRequests(req, res) {
+    res.end(JSON.stringify(PluginService.getPluginsRequests()));
+  }
 
-    getAllPluginsViews(req, res) {
-        res.end(JSON.stringify(pluginService.getPluginsViews()));
-    }
+  getAllPluginsViews(req, res) {
+    res.end(JSON.stringify(PluginService.getPluginsViews()));
+  }
 
-    doRequest(req, res) {
-        res.end(JSON.stringify(pluginService.doPluginRequest(req.params.requestId, req.body)));
-    }
+  doRequest(req, res) {
+    res.end(
+      JSON.stringify(
+        PluginService.doPluginRequest(req.params.requestId, req.body),
+      ),
+    );
+  }
 }
 
-export default new PluginController();
+module.exports = new PluginController();

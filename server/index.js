@@ -1,22 +1,18 @@
-"use strict";
-
 const express = require('express');
 const app = express();
 const server = require('http').createServer(app);
 const cors = require('cors');
+require('dotenv').load();
 const bodyParser = require('body-parser');
-const port = 8000;
+const PluginController = require('./controllers/PluginController');
+const port = process.env.PORT || 8080;
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
-import pluginController from "./controllers/PluginController";
-
-app.get('/requests', pluginController.getAllPluginsRequests);
-
-app.get('/plugins', pluginController.getAllPluginsViews); 
-
-app.post('/request/:requestId', pluginController.doRequest);
+app.get('/requests', PluginController.getAllPluginsRequests);
+app.get('/plugins', PluginController.getAllPluginsViews);
+app.post('/request/:requestId', PluginController.doRequest);
 
 server.listen(port);
