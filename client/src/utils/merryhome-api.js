@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 // eslint-disable-next-line
-const BASE_URL = 'http://localhost:8000';
-
+// const BASE_URL = 'http://localhost:8000';
+const BASE_URL = 'http://172.16.16.146';
 export {getRequestdata,sendRequest,getPluginsViews};
 
 function getRequestdata(){
