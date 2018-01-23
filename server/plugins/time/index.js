@@ -1,19 +1,16 @@
-"use strict";
-
-import Plugin from "../../models/plugin.js";
+const Plugin = require('../../models/plugin');
 
 class TimePlugin extends Plugin {
-    doRequest(id, data) {
-        console.log('req:' + id);
-        switch(id) {
-            case "time":
-                var now = new Date();
-                var response = "Il est " + now.getHours() + " heure " + now.getMinutes();
-                console.log('resp:' + response);
-                return response;
-        }
-        return null;
+  doRequest(id, data) {
+    switch (id) {
+      case 'time':
+        const now = new Date();
+
+        return `Il est ${now.getHours()} heure ${now.getMinutes()}`;
     }
+
+    return null;
+  }
 }
 
-export default new TimePlugin(__dirname);
+module.exports = new TimePlugin(__dirname);

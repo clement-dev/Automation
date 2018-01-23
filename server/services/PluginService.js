@@ -1,64 +1,61 @@
-"use strict";
 const fs = require('fs');
 
 class PluginService {
-    constructor() {
-        this.plugins = [];
-    }
+  constructor() {
+    this.plugins = [];
+  }
 
-    loadPlugins() {
-        var pluginsFolder = "./plugins";
-        this.plugins = [];
-        fs.readdir(pluginsFolder, (err, files) => {
-            files.forEach(file => {
-                console.log("load plugin ..." + file);
-                var tmpPlugin = require("../"+ pluginsFolder + "/" + file + "/index.js").default;
-                tmpPlugin.setService(this);
-                this.plugins.push(tmpPlugin);
-            });
-        });
-    }
+  loadPlugins() {
+    const pluginsFolder = './plugins';
+    this.plugins = [];
+    fs.readdir(pluginsFolder, (err, files) => {
+      files.map(file => {
+        const loadedPlugin = require(`../${pluginsFolder}/${file}`);
+        loadedPlugin.setService(this);
+        this.plugins.push(loadedPlugin);
+      });
+    });
+  }
 
-    getPluginsRequests() {
-        var allRequests = {};
-        for (var i in this.plugins) {
-            for (var j in this.plugins[i].getRequests()) {
-                allRequests[j] = this.plugins[i].getRequests()[j];
-            }
-        }
-        return allRequests;
+  getPluginsRequests() {
+    const allRequests = {};
+    for (let i in this.plugins) {
+      for (let j in this.plugins[i].getRequests()) {
+        allRequests[j] = this.plugins[i].getRequests()[j];
+      }
     }
+    return allRequests;
+  }
 
-    doPluginRequest(requestId, data) {
-        var tmpPlugin = this.getPluginByRequestId(requestId);
-        if (tmpPlugin !== null) {
-            return tmpPlugin.doRequest(requestId, data);
-        }
-        else {
-            return "Je ne comprends pas";
-        }
+  doPluginRequest(requestId, data) {
+    const tmpPlugin = this.getPluginByRequestId(requestId);
+    if (tmpPlugin) {
+      return tmpPlugin.doRequest(requestId, data);
+    } else {
+      return 'Je ne comprends pas';
     }
+  }
 
-    getPluginByRequestId(requestId) {
-        for (var i in this.plugins) {
-            for (var j in this.plugins[i].getRequests()) {
-                if (requestId === j) {
-                    return this.plugins[i];
-                }
-            }
+  getPluginByRequestId(requestId) {
+    for (let i in this.plugins) {
+      for (let j in this.plugins[i].getRequests()) {
+        if (requestId === j) {
+          return this.plugins[i];
         }
-        return null;
+      }
     }
+    return null;
+  }
 
-    getPluginsViews(){
-        var allViews =[];
-        for (var i in this.plugins){
-            if(this.plugins[i].getView()){
-                allViews.push(this.plugins[i].getView());
-            }
-        }
+  getPluginsViews() {
+    const allViews = [];
+    for (let i in this.plugins) {
+      if (this.plugins[i].getView()) {
+        allViews.push(this.plugins[i].getView());
+      }
+    }
     return allViews;
-    }
+  }
 }
 
-export default new PluginService();
+module.exports = new PluginService();
