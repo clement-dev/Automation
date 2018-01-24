@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SpeechRecognition from 'react-speech-recognition';
 import { getRequestdata, sendRequest } from '../../utils/merryhome-api';
@@ -12,7 +12,7 @@ const propTypes = {
   browserSupportSpeechRecognition: PropTypes.bool,
 };
 
-class VoiceRecognition extends React.Component {
+class VoiceRecognition extends Component {
   constructor(props) {
     super(props);
     this.synth = window.speechSynthesis;
@@ -23,7 +23,6 @@ class VoiceRecognition extends React.Component {
       this.props.recognition.onresult = event => {
         const result = event.results[event.results.length - 1];
         if (result.isFinal) {
-          const now = new Date();
           const objRequest = searchRequest(result[0].transcript, requests);
           if (objRequest) {
             sendRequest(objRequest.id, objRequest.data).then(response => {
