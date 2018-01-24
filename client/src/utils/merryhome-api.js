@@ -1,21 +1,18 @@
 import axios from 'axios';
 
-// eslint-disable-next-line
-// const BASE_URL = 'http://localhost:8000';
-const BASE_URL = 'http://172.16.16.146';
-export {getRequestdata,sendRequest,getPluginsViews};
+const getRequestdata = () =>
+  axios
+    .get(`${process.env.REACT_APP_API_URI}/requests`)
+    .then(response => response.data);
 
-function getRequestdata(){
-  const url = BASE_URL + '/requests';
-  return axios.get(url).then(response => response.data);
-}
+const getPluginsViews = () =>
+  axios
+    .get(`${process.env.REACT_APP_API_URI}/plugins`)
+    .then(response => response.data);
 
-function getPluginsViews(){
-  const url = BASE_URL + '/plugins';
-  return axios.get(url).then(response => response.data);
-}
+const sendRequest = (requestId, requestData) =>
+  axios
+    .post(`${process.env.REACT_APP_API_URI}/request/${requestId}`, requestData)
+    .then(response => response.data);
 
-function sendRequest(requestId,requestData){
-  const url = BASE_URL +  '/request/'+requestId;
-  return axios.post(url,requestData).then(response =>  response.data);
-}
+export { getRequestdata, sendRequest, getPluginsViews };
