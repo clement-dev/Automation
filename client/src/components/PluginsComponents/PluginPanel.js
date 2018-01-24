@@ -1,14 +1,32 @@
 import React from 'react';
 import { PluginItem } from './PluginItem';
+import YoutubePanel from './YoutubePanel';
+import InputItem from './InputItem';
 
 class PluginPanel extends React.Component {
   PluginContent(props) {
     if ('List' === props.type) {
+      const controlButtons = props.controlePanel
+        ? props.controlePanel.buttons
+        : [];
+
       return (
         <div className="modal-body">
+          <div className="controlePanelPlugin">
+            {controlButtons.map((item, index) => (
+              <InputItem
+                key={index}
+                itemId={item.itemId}
+                apiEvent={item.event}
+                type={item.type}
+                icon={item.icon}
+                title={item.title}
+              />
+            ))}
+          </div>
           {props.items.map((item, index) => (
             <PluginItem
-              key={`switch-${index}`}
+              key={index}
               itemType={props.itemType}
               title={item.name ? item.name : item.title}
               itemId={item.itemId}
@@ -24,14 +42,29 @@ class PluginPanel extends React.Component {
       );
     }
 
+    if ('YoutubePanel' === props.type) {
+      return (
+        <div className="modal-body">
+          <YoutubePanel />
+        </div>
+      );
+    }
+
     return '';
   }
 
   render() {
     const PluginContent = this.PluginContent;
+    const panelSize =
+      this.props.itemType === 'SwitchContainer' ||
+      this.props.itemType === 'Input' ||
+      this.props.itemType === 'SensorItem'
+        ? 'modal-sm'
+        : 'modal-lg';
+
     return (
       <div className="modal fade pluginPanel" id={this.props.id} role="dialog">
-        <div className="modal-dialog modal-sm">
+        <div className={`modal-dialog ${panelSize}`}>
           <div className="modal-content">
             <div className="modal-header">
               <button type="button" className="close" data-dismiss="modal">
@@ -43,6 +76,7 @@ class PluginPanel extends React.Component {
               type={this.props.type}
               items={this.props.items}
               itemType={this.props.itemType}
+              controlePanel={this.props.controlePanel}
             />
             <div className="modal-footer">
               <button

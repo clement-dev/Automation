@@ -1,4 +1,6 @@
 import axios from 'axios';
+import openSocket from 'socket.io-client';
+const socket = openSocket(process.env.REACT_APP_API_URI);
 
 const getRequestdata = () =>
   axios
@@ -15,4 +17,14 @@ const sendRequest = (requestId, requestData) =>
     .post(`${process.env.REACT_APP_API_URI}/request/${requestId}`, requestData)
     .then(response => response.data);
 
-export { getRequestdata, sendRequest, getPluginsViews };
+const subscribeToEvent = (name, callback) => socket.on(name, callback);
+
+const emitEvent = (name, data) => socket.emit(name, data);
+
+export {
+  getRequestdata,
+  sendRequest,
+  getPluginsViews,
+  subscribeToEvent,
+  emitEvent,
+};
