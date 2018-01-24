@@ -1,6 +1,5 @@
-// eslint-disable-next-line
 class SensorItem {
-  render(){
+  render() {
     return null;
   }
 }

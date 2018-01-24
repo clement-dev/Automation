@@ -1,22 +1,19 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import VoiceRecognition from '../VoiceComponents/VoiceRecognition.js'
-import MenuPanel from './MenuPanel.js'
+import VoiceRecognition from '../VoiceComponents/VoiceRecognition';
+import MenuPanel from './MenuPanel';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-      <MenuPanel/>
-      <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <h1 className="App-title">Welcome to React</h1>
-      </header>
-      <VoiceRecognition/>
-      <p className="App-intro">
-      To get started, edit <code>src/App.js</code> and save to reload.
-      </p>
+        <MenuPanel />
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <h1 className="App-title">Inlabs</h1>
+        </header>
+        <VoiceRecognition />
       </div>
     );
   }
