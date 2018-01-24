@@ -1,15 +1,18 @@
 const fs = require('fs');
+const EventEmitter = require('events');
 
 class PluginService {
   constructor() {
     this.plugins = [];
+    this.clientsSockets = [];
+    this.pluginsEvents = new EventEmitter();
   }
 
   loadPlugins() {
     const pluginsFolder = './plugins';
     this.plugins = [];
     fs.readdir(pluginsFolder, (err, files) => {
-      files.map(file => {
+      files.forEach(file => {
         const loadedPlugin = require(`../${pluginsFolder}/${file}`);
         loadedPlugin.setService(this);
         this.plugins.push(loadedPlugin);
@@ -31,9 +34,9 @@ class PluginService {
     const tmpPlugin = this.getPluginByRequestId(requestId);
     if (tmpPlugin) {
       return tmpPlugin.doRequest(requestId, data);
-    } else {
-      return 'Je ne comprends pas';
     }
+
+    return 'Je ne comprends pas';
   }
 
   getPluginByRequestId(requestId) {
@@ -44,6 +47,7 @@ class PluginService {
         }
       }
     }
+
     return null;
   }
 
@@ -54,7 +58,21 @@ class PluginService {
         allViews.push(this.plugins[i].getView());
       }
     }
+
     return allViews;
+  }
+
+  addClientSocket(client) {
+    for (let i in this.plugins) {
+      this.plugins[i].subscribeEvent(client);
+    }
+    this.clientsSockets.push(client);
+  }
+
+  emitEvent(name, data) {
+    for (let i in this.clientsSockets) {
+      this.clientsSockets[i].emit(name, data);
+    }
   }
 }
 

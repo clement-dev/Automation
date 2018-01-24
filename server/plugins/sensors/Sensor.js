@@ -20,6 +20,8 @@ class Sensor {
     setTimeout(() => {
       const command = `python ${obj.script}`;
       const process = child.exec(command, options, (error, stdout, stderr) => {
+        console.log(`serverSensor${obj.name}Values`);
+        console.log(stdout);
         try {
           obj.service.emitEvent(
             `serverSensor${obj.name}Values`,

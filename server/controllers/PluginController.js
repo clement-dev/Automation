@@ -13,6 +13,10 @@ class PluginController {
     res.end(JSON.stringify(PluginService.getPluginsViews()));
   }
 
+  addClientSocket(client) {
+    PluginService.addClientSocket(client);
+  }
+
   doRequest(req, res) {
     res.end(
       JSON.stringify(
