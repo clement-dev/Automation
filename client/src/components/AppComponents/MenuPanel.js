@@ -3,7 +3,6 @@ import { bubble as Menu } from 'react-burger-menu';
 import { Glyphicon } from 'react-bootstrap';
 import { getPluginsViews } from '../../utils/merryhome-api';
 import PluginPanel from '../PluginsComponents/PluginPanel';
-import VoiceRecognition from '../VoiceComponents/VoiceRecognition';
 import './css/MenuPanel.css';
 
 class MenuPanel extends Component {
@@ -23,7 +22,6 @@ class MenuPanel extends Component {
       <div>
         <Menu>
           <div className="menuPluginList">
-            <VoiceRecognition />
             {this.state.plugins.map((plugin, index) => (
               <button
                 key={`pluginLink-${index}`}

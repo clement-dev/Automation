@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import Note from '../NoteComponents/Note';
+import NoteListGroup from '../NoteComponents/NoteListGroup';
 import MenuPanel from './MenuPanel';
+import VoiceRecognition from '../VoiceComponents/VoiceRecognition';
 import './App.css';
 
 class App extends Component {
@@ -8,7 +9,13 @@ class App extends Component {
     return (
       <div className="App">
         <MenuPanel />
-        <Note />
+        <NoteListGroup />
+        <VoiceRecognition
+          startBsSize="large"
+          stopBsSize="large"
+          startBsStyle="default"
+          stopBsStyle="success"
+        />
       </div>
     );
   }
