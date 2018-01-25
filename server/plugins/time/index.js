@@ -7,9 +7,9 @@ class TimePlugin extends Plugin {
         const now = new Date();
 
         return `Il est ${now.getHours()} heure ${now.getMinutes()}`;
+      default:
+        return null;
     }
-
-    return null;
   }
 }
 

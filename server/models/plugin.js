@@ -25,6 +25,10 @@ class Plugin {
     this.service = service;
   }
 
+  getService() {
+    return this.service;
+  }
+
   subscribeEvent(socketClient) {}
 
   getRequests() {
