@@ -1,11 +1,12 @@
-import React from 'react';
-import { slide as Menu } from 'react-burger-menu';
+import React, { Component } from 'react';
+import { bubble as Menu } from 'react-burger-menu';
+import { Glyphicon } from 'react-bootstrap';
 import { getPluginsViews } from '../../utils/merryhome-api';
 import PluginPanel from '../PluginsComponents/PluginPanel';
-import { Glyphicon } from 'react-bootstrap';
+import VoiceRecognition from '../VoiceComponents/VoiceRecognition';
 import './css/MenuPanel.css';
 
-class MenuPanel extends React.Component {
+class MenuPanel extends Component {
   constructor(props) {
     super(props);
     this.state = { plugins: [] };
@@ -22,6 +23,7 @@ class MenuPanel extends React.Component {
       <div>
         <Menu>
           <div className="menuPluginList">
+            <VoiceRecognition />
             {this.state.plugins.map((plugin, index) => (
               <button
                 key={`pluginLink-${index}`}
