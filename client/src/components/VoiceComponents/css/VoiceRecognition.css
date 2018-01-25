@@ -1,0 +1,25 @@
+.recognitionPanel {
+  padding: 15px;
+  border: 1px solid;
+  border-radius: 50%;
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+}
+
+.blue {
+  color: #02588c;
+  background-color: #02588c;
+}
+
+.green {
+  color: #005744;
+  background-color: #005744;
+}
+
+@media (max-width: 768px) {
+  .recognitionPanel {
+    right: 38%;
+    bottom: 15px;
+  }
+}
