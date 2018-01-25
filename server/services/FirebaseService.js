@@ -15,7 +15,8 @@ class FirebaseService {
 
   createNewNote(text) {
     const note = {
-      text: text
+      text: text,
+      isPinned: false
     };
     const key = firebase
       .database()

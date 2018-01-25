@@ -5,7 +5,7 @@ class NotePlugin extends Plugin {
   doRequest(id, data) {
     switch (id) {
       case 'note':
-        FirebaseService.createNewNote(data[1]);
+        FirebaseService.createNewNote(data[2]);
         return 'Note ajoutée';
       default:
         return null;
