@@ -13,18 +13,6 @@ class FirebaseService {
     }
   }
 
-  async readAllNotes() {
-    try {
-      const notes = await firebase
-        .database()
-        .ref('/notes/')
-        .once('value');
-      return notes.val();
-    } catch (e) {
-      return [];
-    }
-  }
-
   createNewNote(text) {
     const note = {
       text: text

@@ -9,7 +9,7 @@ const searchRequest = (recognitionText, requests) => {
     if (match) {
       return {
         id: i,
-        data: mapKeyMatches(keys, match),
+        data: match,
       };
     }
   }
