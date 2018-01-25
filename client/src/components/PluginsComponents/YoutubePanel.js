@@ -1,5 +1,5 @@
 import React from 'react';
-import { emitEvent, subscribeToEvent } from '../../utils/merryhome-api';
+import { emitEvent, subscribeToEvent } from '../../utils/merryhomeApi';
 import YoutubePlaylistItem from './YoutubePlaylistItem';
 import YoutubePlaylistVideo from './YoutubePlaylistVideo';
 

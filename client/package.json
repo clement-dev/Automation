@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.17.1",
+    "firebase": "^4.9.0",
     "pcre-to-regexp": "0.0.4",
     "react": "^16.2.0",
     "react-bootstrap": "^0.32.0",

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SpeechRecognition from 'react-speech-recognition';
 import Ionicon from 'react-ionicons';
-import { getRequestdata, sendRequest } from '../../utils/merryhome-api';
-import { searchRequest } from '../../utils/voice-helper';
+import { getRequestdata, sendRequest } from '../../utils/merryhomeApi';
+import searchRequest from '../../utils/voiceHelper';
 import './css/VoiceRecognition.css';
 
 const propTypes = {
@@ -45,16 +45,24 @@ class VoiceRecognition extends Component {
     } = this.props;
 
     if (browserSupportSpeechRecognition || !this.props.recognition) {
-      return <div />;
+      return (
+        <div className="container">
+          <div className="row text-center">
+            <div
+              className="alert alert-warning col-xs-offset-3 col-xs-6"
+              role="alert">
+              <p>Browser not compatible with vocal recording.</p>
+            </div>
+          </div>
+        </div>
+      );
     }
 
     return (
       <div
-        className={
-          this.props.listening
-            ? 'recognitionPanel green'
-            : 'recognitionPanel blue'
-        }
+        className={`recognitionPanel ${
+          this.props.listening ? 'green' : 'blue'
+        }`}
         onClick={this.props.listening ? stopListening : startListening}>
         {this.props.listening ? (
           <Ionicon
@@ -77,10 +85,8 @@ class VoiceRecognition extends Component {
   }
 }
 
-const options = {
-  autoStart: false,
-};
-
 VoiceRecognition.propTypes = propTypes;
 
-export default SpeechRecognition(options)(VoiceRecognition);
+export default SpeechRecognition({
+  autoStart: false,
+})(VoiceRecognition);

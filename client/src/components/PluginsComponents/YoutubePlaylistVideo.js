@@ -1,5 +1,5 @@
 import React from 'react';
-import { emitEvent } from '../../utils/merryhome-api';
+import { emitEvent } from '../../utils/merryhomeApi';
 import './css/PlaylistItem.css';
 
 class YoutubePlaylistVideo extends React.Component {

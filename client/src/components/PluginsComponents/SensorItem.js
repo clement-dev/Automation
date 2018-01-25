@@ -1,6 +1,6 @@
 import React from 'react';
 import { Glyphicon } from 'react-bootstrap';
-import { subscribeToEvent } from '../../utils/merryhome-api';
+import { subscribeToEvent } from '../../utils/merryhomeApi';
 import './css/SensorItem.css';
 
 class SensorItem extends React.Component {

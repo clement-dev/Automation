@@ -1,6 +1,6 @@
 import React from 'react';
 import { Glyphicon } from 'react-bootstrap';
-import { emitEvent } from '../../utils/merryhome-api';
+import { emitEvent } from '../../utils/merryhomeApi';
 import './css/InputItem.css';
 
 class InputItem extends React.Component {

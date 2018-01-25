@@ -1,7 +1,7 @@
 import React from 'react';
 import { ButtonGroup, ButtonToolbar } from 'react-bootstrap';
 import Ionicon from 'react-ionicons';
-import './css/note.css';
+import './css/noteHeader.css';
 
 export default props => (
   <div className="list-group-item">
@@ -9,9 +9,9 @@ export default props => (
       <ButtonToolbar className="pull-right">
         <ButtonGroup>
           <Ionicon
-            icon={props.note.pinned ? 'ios-bookmarks' : 'ios-bookmarks-outline'}
+            icon={props.note.isPinned ? 'ios-star' : 'ios-star-outline'}
             fontSize="25px"
-            color={props.note.pinned ? '#02588C' : ''}
+            color={props.note.isPinned ? '#02588C' : ''}
             onClick={e => props.handlePin(e, props.note.id)}
           />
         </ButtonGroup>

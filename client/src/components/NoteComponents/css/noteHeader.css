@@ -1,8 +1,9 @@
 .jumbotron {
   background-color: #005744;
   color: #ffd830;
+  text-align: center;
 }
 
-.list-group {
-  margin-bottom: 115px;
+.jumbotron .lead {
+  color: #30bfff;
 }
