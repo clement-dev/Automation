@@ -5,10 +5,7 @@ class NotePlugin extends Plugin {
   doRequest(id, data) {
     switch (id) {
       case 'note':
-        this.getService.setIsListeningToMemo(true);
-        return 'Je vous écoute';
-      case 'write':
-        FirebaseService.createNewNote(data);
+        FirebaseService.createNewNote(data[1]);
         return 'Note ajoutée';
       default:
         return null;

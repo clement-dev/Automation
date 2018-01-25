@@ -36,18 +36,10 @@ class PluginService {
   }
 
   doPluginRequest(requestId, data) {
-    if (this.isListeningToMemo) {
-      this.isListeningToMemo = false;
-      notePlugin = this.plugins.find(plugin => plugin instanceof NotePlugin);
-
-      return notePlugin.doRequest('write', data);
-    }
-    
     const tmpPlugin = this.getPluginByRequestId(requestId);
     if (tmpPlugin) {
       return tmpPlugin.doRequest(requestId, data);
     }
-
     return 'Je ne comprends pas';
   }
 

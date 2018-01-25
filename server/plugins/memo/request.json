@@ -1,1 +1,1 @@
-{ "note": "écris une note" }
+{ "note": "écri(s|re|t) une note (.+)" }

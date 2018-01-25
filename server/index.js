@@ -19,7 +19,4 @@ app.post('/request/:requestId', PluginController.doRequest);
 
 io.sockets.on('connection', client => PluginController.addClientSocket(client));
 
-firebaseService.createNewNote('test');
-firebaseService.readAllNotes();
-
 server.listen(port);
