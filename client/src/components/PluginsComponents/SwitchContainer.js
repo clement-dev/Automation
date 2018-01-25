@@ -1,5 +1,5 @@
 import React from 'react';
-import { subscribeToEvent, emitEvent } from '../../utils/merryhome-api';
+import { subscribeToEvent, emitEvent } from '../../utils/merryhomeApi';
 import './css/SwitchContainer.css';
 
 class SwitchContainer extends React.Component {
