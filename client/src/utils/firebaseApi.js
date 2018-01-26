@@ -5,10 +5,7 @@ import { denormalizeNote } from './noteHelper';
 const fb = Firebase.initializeApp(fbConfig);
 
 const getAllNotes = (addNote, updateNote, removeNote) => {
-  const noteRef = fb
-    .database()
-    .ref('notes')
-    .orderByChild('isPinned');
+  const noteRef = fb.database().ref('notes');
 
   noteRef.on('child_added', snapshot => {
     addNote(denormalizeNote(snapshot.key, snapshot.val()));
