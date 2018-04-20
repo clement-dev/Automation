@@ -40,3 +40,6 @@ This will automatically add the the note and display it.
 You can pin some of them, or delete them.
 
 You can open another tab in your browser to see the updates in real time.
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMzMzMzYzNTI1XX0=
+-->
